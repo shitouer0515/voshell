@@ -33,7 +33,7 @@ jobs:
 
     - name: Clone master
       run: |
-        git clone -b master git@gitee.com:evine/jd_shell.git master
+        git clone -b master git@gitee.com:evine/jd_shell.git jd_shell
 
     - name: Push master
       uses: ad-m/github-push-action@master
