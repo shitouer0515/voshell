@@ -6,7 +6,7 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-18.04
-    if: github.repository == 'RikudouPatrickstar/jd_shell'
+    if: github.repository == 'shitouer0515/voshell'
     timeout-minutes: 2
     steps:
     - name: Init Build Dependencies
