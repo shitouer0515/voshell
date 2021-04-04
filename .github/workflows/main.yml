@@ -1,4 +1,4 @@
-name: sync-lxk0301/jd_scripts
+name: sync-code
 
 on:
   schedule:
@@ -27,31 +27,20 @@ jobs:
     - name: Prepare
       run: |
         mkdir -p ~/.ssh
-        echo -e "${{ secrets.LXKEY }}" > ~/.ssh/id_rsa
+        echo -e "${{ secrets.EVINEKEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan gitee.com > ~/.ssh/known_hosts
 
-    - name: Clone master
+    - name: Clone
       run: |
-        git clone -b master git@gitee.com:lxk0301/jd_scripts.git master
+        git clone -b master git@gitee.com:evine/jd_shell.git jd_shell
 
-    - name: Push master
+    - name: Push code
       uses: ad-m/github-push-action@master
       with:
-        directory: master
+        directory: jd_shell
         github_token: ${{ secrets.SYNC }}
         branch: master
-
-    - name: Clone main
-      run: |
-        git clone -b main git@gitee.com:lxk0301/jd_scripts.git main
-
-    - name: Push main
-      uses: ad-m/github-push-action@master
-      with:
-        directory: main
-        github_token: ${{ secrets.SYNC }}
-        branch: main
 
     - name: Delete Workflow Runs
       uses: Mattraks/delete-workflow-runs@main
